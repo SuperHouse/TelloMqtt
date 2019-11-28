@@ -1,5 +1,7 @@
 # DJI / Ryze Tello drone control using MQTT
 
+By Jonathan Oxer <jon@oxer.com.au>
+
 Control a DJI / Ryze Tello drone using MQTT messages.
 
 This program needs to be run on a device that is connected to the Tello's
@@ -61,8 +63,17 @@ mosquitto_pub -t "device/tello/cmnd" -m "takeoff"
 Currently implemented commands are:
  * takeoff
  * land
- * flip_forwards
+ * flip_forward
  * flip_back
+ * flip_right
+ * flip_left
+ * flip_forwardleft
+ * flip_backleft
+ * flip_forwardright
+ * flip_backright
 
  These commands are trivial wrappers for the TelloPy API so you can easily
  extend them by adding more API calls.
+
+ Commands that require an argument or that return a value currently
+ don't work.

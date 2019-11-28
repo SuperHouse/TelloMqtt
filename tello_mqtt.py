@@ -80,14 +80,11 @@ def tello_handler(event, sender, data, **args):
     if event is drone.EVENT_FLIGHT_DATA:
         print(data)
 
-def tello_command():
-    tello.send_command('command')
-
 def tello_takeoff():
-    tello.send_command('takeoff')
+    tello.takeoff()
 
 def tello_land():
-    tello.send_command('land')
+    tello.land()
 
 def tello_flip_forward():
     drone.flip_forward()
