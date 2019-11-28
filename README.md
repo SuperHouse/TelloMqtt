@@ -6,7 +6,7 @@ This program needs to be run on a device that is connected to the Tello's
 WiFi network, and ALSO has access to an MQTT broker.
 
 Testing has been done with a Raspberry Pi with a WiFi connection to the
-Tella and a wired Ethernet connection to the rest of the network, including
+Tello and a wired Ethernet connection to the rest of the network, including
 an MQTT broker. You can also run the broker directly on your device if you
 prefer.
 
@@ -17,14 +17,15 @@ Requires Python3.
 Install the required libraries:
 ```
 $ pip install tellopy
-$ pip install paho_mqtt
+$ pip install paho-mqtt
 ```
 
 Configure the address of your MQTT broker by editing tello_mqtt.py.
 
 Configure your device to connect to the Tello's WiFi, which is an
-unprotected network. This can usually be done by editing the file
-"/etc/wpa_supplicant/wpa_supplicant.conf" and putting in an entry
+unprotected network. On Linux systems including Raspbian this can be
+done by editing the file
+"/etc/wpa_supplicant/wpa_supplicant.conf" and creating an entry
 similar to:
 ```
 network={
@@ -44,13 +45,15 @@ watch ifconfig wlan0
 Once you see that your device has been assigned an IP address, you
 know it has connected to the Tello.
 
+Press CTL-C to end the "watch" command.
+
 Run the TelloMqtt client:
 ```
 $ ./tello_mqtt.py
 ```
 
 Send commands to the MQTT broker. This can be done using the Mosquitto
-example client on the command line, like:
+command line client, like:
 ```
 mosquitto_pub -t "device/tello/cmnd" -m "takeoff"
 ```
