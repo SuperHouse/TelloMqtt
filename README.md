@@ -9,20 +9,19 @@ For testing, a Raspberry Pi has been used with a WiFi connection to the
 Tella and a wired Ethernet connection to the rest of the network, including
 an MQTT broker.
 
+## Setup
 
-## Dependencies
+Requires Python3.
+
+Install the required libraries:
 ```
 $ pip install tellopy
 $ pip install paho_mqtt
 ```
 
-## Setup
+Configure the address of your MQTT broker by editing tello_mqtt.py.
 
-Install the dependencies.
-
-Configure the address of the MQTT broker by editing tello_mqtt.py.
-
-Configure the device to connect to the Tello's WiFi, which is an
+Configure your device to connect to the Tello's WiFi, which is an
 unprotected network. This can usually be done by editing the file
 "/etc/wpa_supplicant/wpa_supplicant.conf" and putting in an entry
 similar to:
@@ -41,13 +40,16 @@ an IP address. You can watch this process using something like:
 watch ifconfig wlan0
 ```
 
-Run the client:
+Once you see that your device has been assigned an IP address, you
+know it has connected to the Tello.
+
+Run the TelloMqtt client:
 ```
 $ ./tello_mqtt.py
 ```
 
 Send commands to the MQTT broker. This can be done using the Mosquitto
-example clients on the command line, like:
+example client on the command line, like:
 ```
 mosquitto_pub -t "device/tello/cmnd" -m "takeoff"
 ```
@@ -58,3 +60,5 @@ Currently implemented commands are:
  * flip_forwards
  * flip_back
 
+ These commands are trivial wrappers for the TelloPy API so you can easily
+ extend them by adding more API calls.
